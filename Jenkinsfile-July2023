@@ -1,7 +1,7 @@
 node{
   def mavenHome = tool name: 'maven 3.9.2'
   stage('1Clone'){
-    git "https://github.com/tobbyoba/maven-web-application"
+    git 'https://github.com/tobbyoba/maven-web-application'
   }
   stage('2Test+build'){
     sh "${mavenHome}/bin/mvn clean package"
@@ -13,7 +13,6 @@ node{
   stage('4UploadArtifacts'){
     sh "${mavenHome}/bin/mvn deploy"
   }
-   /*
   stage('5Deploy'){
     deploy adapters: [tomcat9(credentialsId: 'tomcat-cred', path: '', url: 'http://3.133.133.202:8177/')], contextPath: null, onFailure: false, war: 'target/*war'
   }
@@ -22,6 +21,7 @@ node{
 Build status
 Landmark Technologies''', recipientProviders: [developers(), contributor()], subject: 'build status', to: 'developers'
   }
+}
 
  
 
